@@ -1,0 +1,11 @@
+{
+    "type": "record",
+    "name": "samplePayload",
+    "fields": [{
+        "name": "hours",
+        "type": "int"
+    }, {
+        "name": "capacity",
+        "type": "int"
+    }]
+}

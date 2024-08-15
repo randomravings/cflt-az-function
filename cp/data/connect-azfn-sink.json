@@ -1,0 +1,23 @@
+{
+    "connector.class": "io.confluent.connect.azure.functions.AzureFunctionsSinkConnector",
+    "topics": "test-func-sink",
+    "topic.creation.enable": false,
+    "function.url": "https://<app>.azurewebsites.net/api/TurbineRepair",
+    "function.key": "<key>",
+    "request.timeout.ms": 1000,
+    "behavior.on.error": "log",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter.schema.registry.url": "http://schema-registry:8081",
+    "confluent.topic.bootstrap.servers": "broker:29092",
+    "confluent.topic.replication.factor": "1",
+    "reporter.bootstrap.servers": "broker:29092",
+    "reporter.result.topic.name": "success-responses",
+    "reporter.result.topic.replication.factor": "1",
+    "reporter.result.topic.key.format": "string",
+    "reporter.result.topic.value.format": "string",
+    "reporter.error.topic.name":"error-responses",
+    "reporter.error.topic.replication.factor":"1",
+    "reporter.error.topic.key.format": "string",
+    "reporter.error.topic.value.format": "string"
+  }
