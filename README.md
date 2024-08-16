@@ -43,10 +43,17 @@ Second is to set up the Confluent Platform environment which consists of Broker,
 
 > Smoke Test: Results come within seconds and no errors should appear.
 
-## Wrap up
+## Wrap Up
 
 For verification of the authentication mechanism, view the ```Logs``` tab and notice the urls that a logged. ```Trigger Url: /api/TurbineRepair?code=<secret>``` are from the Azure Function Sink Connector and ```Trigger Url: /api/TurbineRepair``` is from the HTTP Sink Connector (which uses the ```x-functions-key``` header).
 
 Finally just a note on the structure. The key to recreate the request structure from the Azure function we can leverage the [InsertField](https://docs.confluent.io/platform/current/connect/transforms/insertfield.html) SMT to add the ```partition```, ```offset```, and ```timestamp``` fields to the structure. Note, this is only doable when using a structure (Avro, Json, Profobuf) so that is an additional constraint, so if the original value is just a string, this is not doable. However, in order to complete it we need to be able to send an array of strcutures, and in order to achieve this we need to set ```"batch.json.as.array": true``` on the HTTP Sink Connector.
 
 Now the HTTP Sink Connector can be replaced the Azure Sink Connector without changing this Azure Function and is more secure.
+
+## Clean Up
+
+To get rid if the resources do the following:
+
+1. Run the ```stop.sh``` to tear down the CP cluster.
+2. From VS Code hit F1 and select ```> Azure Functions: Delete Function App...```.
